@@ -6,8 +6,6 @@ class MsgFieldBox extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
 
-    final ColorScheme colors = Theme.of(context).colorScheme;
-
     final outLineInputBorder = UnderlineInputBorder(
       borderSide: const BorderSide(
         color:  Colors.transparent        
@@ -15,15 +13,25 @@ class MsgFieldBox extends StatelessWidget {
       borderRadius: BorderRadius.circular(40)
     );
 
-    return TextFormField(
-      decoration: InputDecoration(
+    final inputDecoration = InputDecoration(
         enabledBorder: outLineInputBorder,
         focusedBorder: outLineInputBorder,
         filled: true,
         suffixIcon:  IconButton(
-          onPressed: (){},
+          onPressed: (){
+            print('valor de la caja de texto');
+          },
           icon: const Icon(Icons.send_outlined))
-      ),
+      );
+
+    return TextFormField(
+      decoration: inputDecoration,
+      onFieldSubmitted: (value) {
+        print('submit value $value');
+      },
+      onChanged: (value) {
+        print(value);
+      },
     );
   }
 }
