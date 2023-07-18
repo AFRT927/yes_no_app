@@ -4,14 +4,14 @@ import 'package:yes_no_app/domain/entities/message.dart';
 class HerMsgBubble extends StatelessWidget {
 
   final Message message;
-  
+
   const HerMsgBubble({super.key, required this.message});
 
   @override
   Widget build(BuildContext context) {
 
    final ColorScheme colors = Theme.of(context).colorScheme;
-
+    
     return Column(
       crossAxisAlignment: CrossAxisAlignment.start,
       children: [        
@@ -37,7 +37,7 @@ class HerMsgBubble extends StatelessWidget {
           height: 5,
         ),
         // to do Imagen
-        _ImageBubble(),
+        const _ImageBubble(),
         SizedBox(height: 10,)
 
       ],
@@ -51,6 +51,7 @@ class _ImageBubble extends StatelessWidget {
   
   @override
   Widget build(BuildContext context) {
+   
     final size = MediaQuery.of(context).size;
     return ClipRRect(
       borderRadius: BorderRadius.circular(20),
