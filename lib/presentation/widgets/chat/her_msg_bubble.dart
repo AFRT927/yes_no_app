@@ -1,7 +1,11 @@
 import 'package:flutter/material.dart';
+import 'package:yes_no_app/domain/entities/message.dart';
 
 class HerMsgBubble extends StatelessWidget {
-  const HerMsgBubble({super.key});
+
+  final Message message;
+  
+  const HerMsgBubble({super.key, required this.message});
 
   @override
   Widget build(BuildContext context) {
@@ -16,14 +20,14 @@ class HerMsgBubble extends StatelessWidget {
             color: colors.secondary,
             borderRadius: BorderRadius.circular(20)
           ),
-          child: const Padding(
-            padding: EdgeInsets.symmetric(
+          child: Padding(
+            padding: const EdgeInsets.symmetric(
               horizontal: 20,
                vertical: 10
                ),
             child:  Text(
-              'hola mundo',
-              style: TextStyle(
+              message.text,
+              style: const TextStyle(
                 color: Colors.white
               )
             ),
