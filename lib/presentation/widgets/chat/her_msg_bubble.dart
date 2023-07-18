@@ -10,53 +10,67 @@ class HerMsgBubble extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
 
-   final ColorScheme colors = Theme.of(context).colorScheme;
-    
+   final ColorScheme colors = Theme.of(context).colorScheme;    
     return Column(
       crossAxisAlignment: CrossAxisAlignment.start,
       children: [        
-        Container(
-          decoration: BoxDecoration(
-            color: colors.secondary,
-            borderRadius: BorderRadius.circular(20)
-          ),
-          child: Padding(
-            padding: const EdgeInsets.symmetric(
-              horizontal: 20,
-               vertical: 10
-               ),
-            child:  Text(
-              message.text,
-              style: const TextStyle(
-                color: Colors.white
-              )
-            ),
-          ),
-        ),
-        const SizedBox(
-          height: 5,
-        ),
-        // to do Imagen
-        const _ImageBubble(),
-        SizedBox(height: 10,)
-
+        _textBubble(colors: colors, msg: message),
+        const SizedBox(height: 5),        
+        _ImageBubble(msg: message,),
+        const SizedBox(height: 10,)
       ],
     );
   }
 }
 
+class _textBubble extends StatelessWidget {
+  const _textBubble({
+    super.key,
+    required this.colors,
+    required this.msg,
+  });
 
-class _ImageBubble extends StatelessWidget {
-  const _ImageBubble({super.key});
-  
+  final ColorScheme colors;
+  final Message msg;
+
   @override
   Widget build(BuildContext context) {
-   
+    return Container(
+      decoration: BoxDecoration(
+        color: colors.secondary,
+        borderRadius: BorderRadius.circular(20)
+      ),
+      child: Padding(
+        padding: const EdgeInsets.symmetric(
+          horizontal: 20,
+           vertical: 10
+           ),
+        child:  Text(
+          msg.text,
+          style: const TextStyle(
+            color: Colors.white
+          )
+        ),
+      ),
+    );
+  }
+}
+
+
+
+
+
+class _ImageBubble extends StatelessWidget {
+  final Message msg;
+  const _ImageBubble({super.key, required Message this.msg});
+  
+  @override
+  Widget build(BuildContext context) {    
     final size = MediaQuery.of(context).size;
     return ClipRRect(
       borderRadius: BorderRadius.circular(20),
       child: Image.network(
-        'https://yesno.wtf/assets/yes/13-c3082a998e7758be8e582276f35d1336.gif',
+        msg.imageUrl!,
         height: 150,
         width: size.width * 0.7,
         fit: BoxFit.cover,
