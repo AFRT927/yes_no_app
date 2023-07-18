@@ -1,7 +1,7 @@
 // notese que no se esta utilizando flutter, solo vanilla Dart
 
 enum FromWho {
-  mine,
+  me,
   hers
 }
 
